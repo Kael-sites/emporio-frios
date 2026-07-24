@@ -20,23 +20,24 @@
             margin: 0 auto;
         }
        .container { padding: 20px; max-width: 700px; margin: auto; }
-        h3 { color: #FFD700; font-size: 24px; border-bottom: 2px solid #FFD700; padding-bottom: 5px; }
+        h3 { color: #fff; font-size: 24px; border-bottom: 2px solid #fff; padding-bottom: 5px; }
        .item {
             display: flex; justify-content: space-between; align-items: center;
             padding: 12px 0; border-bottom: 1px solid #333;
         }
-       .nome { text-align: left; }
-       .preco { color: #FFD700; font-weight: bold; margin: 0 10px; }
-       .qtd { width: 50px; background: #222; color: #fff; border: 1px solid #FFD700; text-align: center; border-radius: 5px; }
-       .btn-add { background: #FFD700; color: #000; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+       .nome { text-align: left; flex: 1; }
+       .preco { color: #fff; font-weight: bold; margin: 0 10px; }
+       .qtd-box { display: flex; align-items: center; }
+       .qtd { width: 40px; background: #222; color: #fff; border: 1px solid #fff; text-align: center; border-radius: 5px; margin: 0 5px; }
+       .btn-qtd { background: #fff; color: #000; border: none; width: 30px; height: 30px; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 18px; }
 
         /* CARRINHO */
         #carrinho {
-            background: #111; padding: 20px; margin-top: 30px; border-radius: 10px; border: 2px solid #FFD700;
+            background: #111; padding: 20px; margin-top: 30px; border-radius: 10px; border: 2px solid #fff;
         }
         #lista-carrinho { list-style: none; padding: 0; text-align: left; }
         #lista-carrinho li { display: flex; justify-content: space-between; margin: 8px 0; }
-        #total { font-size: 24px; color: #FFD700; font-weight: bold; margin-top: 15px; }
+        #total { font-size: 24px; color: #fff; font-weight: bold; margin-top: 15px; }
        .whatsapp {
             display: block; background-color: #25D366; color: #fff;
             padding: 15px; margin-top: 20px; border-radius: 8px;
@@ -52,26 +53,25 @@
 
     <div class="container">
         <h3>Bebidas</h3>
-        <div class="item"><span class="nome">Red Label</span><span class="preco">R$ 110,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Red Label" data-preco="110"><button class="btn-add">+</button></div>
-        <div class="item"><span class="nome">Jack Daniels</span><span class="preco">R$ 175,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Jack Daniels" data-preco="175"><button class="btn-add">+</button></div>
-        <div class="item"><span class="nome">Gin QN</span><span class="preco">R$ 30,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Gin QN" data-preco="30"><button class="btn-add">+</button></div>
-        <div class="item"><span class="nome">Busca Brisa</span><span class="preco">R$ 75,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Busca Brisa" data-preco="75"><button class="btn-add">+</button></div>
-        <div class="item"><span class="nome">Jack James</span><span class="preco">R$ 60,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Jack James" data-preco="60"><button class="btn-add">+</button></div>
+        <div class="item"><span class="nome">Red Label</span><span class="preco">R$ 110,00</span><div class="qtd-box"><button class="btn-qtd btn-menos">-</button><input type="number" value="1" min="1" class="qtd" data-nome="Red Label" data-preco="110"><button class="btn-qtd btn-mais">+</button></div></div>
+        <div class="item"><span class="nome">Jack Daniels</span><span class="preco">R$ 175,00</span><div class="qtd-box"><button class="btn-qtd btn-menos">-</button><input type="number" value="1" min="1" class="qtd" data-nome="Jack Daniels" data-preco="175"><button class="btn-qtd btn-mais">+</button></div></div>
+        <div class="item"><span class="nome">Gin QN</span><span class="preco">R$ 30,00</span><div class="qtd-box"><button class="btn-qtd btn-menos">-</button><input type="number" value="1" min="1" class="qtd" data-nome="Gin QN" data-preco="30"><button class="btn-qtd btn-mais">+</button></div></div>
+        <div class="item"><span class="nome">Busca Brisa</span><span class="preco">R$ 75,00</span><div class="qtd-box"><button class="btn-qtd btn-menos">-</button><input type="number" value="1" min="1" class="qtd" data-nome="Busca Brisa" data-preco="75"><button class="btn-qtd btn-mais">+</button></div></div>
+        <div class="item"><span class="nome">Jack James</span><span class="preco">R$ 60,00</span><div class="qtd-box"><button class="btn-qtd btn-menos">-</button><input type="number" value="1" min="1" class="qtd" data-nome="Jack James" data-preco="60"><button class="btn-qtd btn-mais">+</button></div></div>
 
         <h3>Copões</h3>
-        <div class="item"><span class="nome">Copão Gin QN</span><span class="preco">R$ 15,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Copão Gin QN" data-preco="15"><button class="btn-add">+</button></div>
-        <div class="item"><span class="nome">Copão Busca Brisa</span><span class="preco">R$ 18,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Copão Busca Brisa" data-preco="18"><button class="btn-add">+</button></div>
-        <div class="item"><span class="nome">Copão Bob Pinga</span><span class="preco">R$ 18,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Copão Bob Pinga" data-preco="18"><button class="btn-add">+</button></div>
-        <div class="item"><span class="nome">Copão Red Label</span><span class="preco">R$ 20,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Copão Red Label" data-preco="20"><button class="btn-add">+</button></div>
+        <div class="item"><span class="nome">Copão Gin QN</span><span class="preco">R$ 15,00</span><div class="qtd-box"><button class="btn-qtd btn-menos">-</button><input type="number" value="1" min="1" class="qtd" data-nome="Copão Gin QN" data-preco="15"><button class="btn-qtd btn-mais">+</button></div></div>
+        <div class="item"><span class="nome">Copão Busca Brisa</span><span class="preco">R$ 18,00</span><div class="qtd-box"><button class="btn-qtd btn-menos">-</button><input type="number" value="1" min="1" class="qtd" data-nome="Copão Busca Brisa" data-preco="18"><button class="btn-qtd btn-mais">+</button></div></div>
+        <div class="item"><span class="nome">Copão Bob Pinga</span><span class="preco">R$ 18,00</span><div class="qtd-box"><button class="btn-qtd btn-menos">-</button><input type="number" value="1" min="1" class="qtd" data-nome="Copão Bob Pinga" data-preco="18"><button class="btn-qtd btn-mais">+</button></div></div>
+        <div class="item"><span class="nome">Copão Red Label</span><span class="preco">R$ 20,00</span><div class="qtd-box"><button class="btn-qtd btn-menos">-</button><input type="number" value="1" min="1" class="qtd" data-nome="Copão Red Label" data-preco="20"><button class="btn-qtd btn-mais">+</button></div></div>
 
         <!-- CARRINHO -->
         <div id="carrinho">
             <h3>🛒 Seu Pedido</h3>
-            <ul id="lista-carrinho"><li>Seu carrinho está vazio</li></ul>
+            <ul id="lista-carrinho"></ul>
             <div id="total">Total: R$ 0,00</div>
             <a id="btn-whatsapp" class="whatsapp" href="#" target="_blank">Enviar Pedido no WhatsApp</a>
         </div>
-
     </div>
 
 <script>
@@ -80,30 +80,10 @@
     const totalEl = document.getElementById('total');
     const btnWhats = document.getElementById('btn-whatsapp');
 
-    document.querySelectorAll('.btn-add').forEach(botao => {
-        botao.addEventListener('click', () => {
-            const item = botao.parentElement;
-            const nome = item.querySelector('.qtd').dataset.nome;
-            const preco = parseFloat(item.querySelector('.qtd').dataset.preco);
-            const qtd = parseInt(item.querySelector('.qtd').value);
-
-            if(qtd > 0){
-                const index = carrinho.findIndex(p => p.nome === nome);
-                if(index > -1) carrinho[index].qtd = qtd;
-                else carrinho.push({nome, preco, qtd});
-                atualizarCarrinho();
-            }
-        })
-    });
-
     function atualizarCarrinho(){
         listaCarrinho.innerHTML = '';
         let total = 0;
         let mensagemWhats = 'Olá! Quero fazer o pedido:%0A%0A';
-
-        if(carrinho.length === 0){
-            listaCarrinho.innerHTML = '<li>Seu carrinho está vazio</li>';
-        }
 
         carrinho.forEach(item => {
             if(item.qtd > 0){
@@ -116,9 +96,35 @@
 
         totalEl.innerText = `Total: R$ ${total.toFixed(2)}`;
         mensagemWhats += `%0A*TOTAL: R$ ${total.toFixed(2)}*`;
-
         btnWhats.href = `https://wa.me/5517991927552?text=${mensagemWhats}`;
     }
+
+    document.querySelectorAll('.item').forEach(item => {
+        const btnMais = item.querySelector('.btn-mais');
+        const btnMenos = item.querySelector('.btn-menos');
+        const inputQtd = item.querySelector('.qtd');
+        const nome = inputQtd.dataset.nome;
+        const preco = parseFloat(inputQtd.dataset.preco);
+
+        carrinho.push({nome, preco, qtd: 1}); // já começa com 1
+
+        btnMais.addEventListener('click', () => {
+            inputQtd.value = parseInt(inputQtd.value) + 1;
+            carrinho.find(p => p.nome === nome).qtd = parseInt(inputQtd.value);
+            atualizarCarrinho();
+        });
+
+        btnMenos.addEventListener('click', () => {
+            if(parseInt(inputQtd.value) > 1){
+                inputQtd.value = parseInt(inputQtd.value) - 1;
+                carrinho.find(p => p.nome === nome).qtd = parseInt(inputQtd.value);
+                atualizarCarrinho();
+            }
+        });
+    });
+    
+    atualizarCarrinho(); // já carrega com tudo 1x
+
 </script>
 
 </body>
