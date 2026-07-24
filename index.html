@@ -1,55 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Empório do Frio - Cardápio</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
-    header { background: #1a1a1a; color: white; text-align: center; padding: 20px; }
-    header h1 { margin: 0; }
-    .container { max-width: 600px; margin: 20px auto; padding: 15px; background: white; border-radius: 10px; }
-    h3 { color: #c00000; border-bottom: 2px solid #c00000; padding-bottom: 5px; }
-    ul { list-style: none; padding: 0; }
-    li { padding: 10px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
-    .preco { font-weight: bold; color: #333; }
-    .whatsapp { display: block; text-align: center; background: #25D366; color: white; padding: 15px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 20px; }
-    footer { text-align: center; padding: 20px; font-size: 12px; color: #777; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empório Frios</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .banner img {
+            width: 100%;
+            max-width: 800px;
+            display: block;
+            margin: 0 auto;
+        }
+        .container { padding: 20px; }
+        h3 { color: #FFD700; font-size: 24px; }
+        ul { list-style: none; padding: 0; }
+        li {
+            font-size: 18px; margin: 10px 0;
+            display: flex; justify-content: space-between;
+            padding: 8px 20px; border-bottom: 1px solid #333;
+        }
+        .preco { color: #FFD700; font-weight: bold; }
+        .whatsapp {
+            display: block; background-color: #25D366; color: #fff;
+            padding: 15px; margin: 20px; border-radius: 8px;
+            text-decoration: none; font-weight: bold; font-size: 18px;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <h1>Empório do Frio</h1>
-  <p>Os melhores frios e bebidas da cidade</p>
-</header>
+    <!-- BANNER -->
+    <div class="banner">
+        <img src="./banner.jpg" alt="Empório Frios">
+    </div>
 
-<div class="container">
-  <h3>Bebidas</h3>
-  <ul>
-    <li>Red Label <span class="preco">R$ 110,00</span></li>
-    <li>Jack Daniels <span class="preco">R$ 175,00</span></li>
-    <li>Gin QN <span class="preco">R$ 30,00</span></li>
-    <li>Busca Brisa <span class="preco">R$ 75,00</span></li>
-    <li>Jack James <span class="preco">R$ 60,00</span></li>
-  </ul>
-  <h3>Copão</h3>
-   <ul>
-     <li>Copão De Gin <span class="preco">R$ 15,00</span></li>
-     <li>Copão De Red Label <span class="preco">R$ 20,00</span></li>
+    <div class="container">
+        <h3>Bebidas</h3>
+        <ul>
+            <li>Red Label <span class="preco">R$ 110,00</span></li>
+            <li>Jack Daniels <span class="preco">R$ 175,00</span></li>
+            <li>Gin QN <span class="preco">R$ 30,00</span></li>
+            <li>Busca Brisa <span class="preco">R$ 75,00</span></li>
+            <li>Jack James <span class="preco">R$ 60,00</span></li>
+        </ul>
 
-  
+        <h3>Copões</h3>
+        <ul>
+            <li>Copão Gin QN <span class="preco">R$ 15,00</span></li>
+            <li>Copão Busca Brisa <span class="preco">R$ 18,00</span></li>
+            <li>Copão Bob Pinga <span class="preco">R$ 18,00</span></li>
+            <li>Copão Red Label <span class="preco">R$ 20,00</span></li>
+        </ul>
 
-  <a class="whatsapp" href="https://wa.me/551799192-7552" target="_blank">
-    Fazer Pedido no WhatsApp
-  </a>
-
-</div>
-
-<footer>
-  <p>Empório do Frio | José de Freitas - PI</p>
-  <p>Atendimento: Ter a Dom 7:30 às 00:00h</p>
-</footer>
+        <!-- BOTÃO WHATSAPP COM SEU NÚMERO -->
+        <a class="whatsapp" href="https://wa.me/5517991927552" target="_blank">
+            Fazer Pedido no WhatsApp
+        </a>
+    </div>
 
 </body>
 </html>
