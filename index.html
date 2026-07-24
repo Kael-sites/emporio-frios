@@ -13,58 +13,113 @@
             padding: 0;
             text-align: center;
         }
-        .banner img {
+       .banner img {
             width: 100%;
             max-width: 800px;
             display: block;
             margin: 0 auto;
         }
-        .container { padding: 20px; }
-        h3 { color: #FFD700; font-size: 24px; }
-        ul { list-style: none; padding: 0; }
-        li {
-            font-size: 18px; margin: 10px 0;
-            display: flex; justify-content: space-between;
-            padding: 8px 20px; border-bottom: 1px solid #333;
+       .container { padding: 20px; max-width: 700px; margin: auto; }
+        h3 { color: #FFD700; font-size: 24px; border-bottom: 2px solid #FFD700; padding-bottom: 5px; }
+       .item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 0; border-bottom: 1px solid #333;
         }
-        .preco { color: #FFD700; font-weight: bold; }
-        .whatsapp {
+       .nome { text-align: left; }
+       .preco { color: #FFD700; font-weight: bold; margin: 0 10px; }
+       .qtd { width: 50px; background: #222; color: #fff; border: 1px solid #FFD700; text-align: center; border-radius: 5px; }
+       .btn-add { background: #FFD700; color: #000; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+
+        /* CARRINHO */
+        #carrinho {
+            background: #111; padding: 20px; margin-top: 30px; border-radius: 10px; border: 2px solid #FFD700;
+        }
+        #lista-carrinho { list-style: none; padding: 0; text-align: left; }
+        #lista-carrinho li { display: flex; justify-content: space-between; margin: 8px 0; }
+        #total { font-size: 24px; color: #FFD700; font-weight: bold; margin-top: 15px; }
+       .whatsapp {
             display: block; background-color: #25D366; color: #fff;
-            padding: 15px; margin: 20px; border-radius: 8px;
+            padding: 15px; margin-top: 20px; border-radius: 8px;
             text-decoration: none; font-weight: bold; font-size: 18px;
         }
     </style>
 </head>
 <body>
 
-    <!-- BANNER -->
     <div class="banner">
         <img src="./banner.jpg" alt="Empório Frios">
     </div>
 
     <div class="container">
         <h3>Bebidas</h3>
-        <ul>
-            <li>Red Label <span class="preco">R$ 110,00</span></li>
-            <li>Jack Daniels <span class="preco">R$ 175,00</span></li>
-            <li>Gin QN <span class="preco">R$ 30,00</span></li>
-            <li>Busca Brisa <span class="preco">R$ 75,00</span></li>
-            <li>Jack James <span class="preco">R$ 60,00</span></li>
-        </ul>
+        <div class="item"><span class="nome">Red Label</span><span class="preco">R$ 110,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Red Label" data-preco="110"><button class="btn-add">+</button></div>
+        <div class="item"><span class="nome">Jack Daniels</span><span class="preco">R$ 175,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Jack Daniels" data-preco="175"><button class="btn-add">+</button></div>
+        <div class="item"><span class="nome">Gin QN</span><span class="preco">R$ 30,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Gin QN" data-preco="30"><button class="btn-add">+</button></div>
+        <div class="item"><span class="nome">Busca Brisa</span><span class="preco">R$ 75,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Busca Brisa" data-preco="75"><button class="btn-add">+</button></div>
+        <div class="item"><span class="nome">Jack James</span><span class="preco">R$ 60,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Jack James" data-preco="60"><button class="btn-add">+</button></div>
 
         <h3>Copões</h3>
-        <ul>
-            <li>Copão Gin QN <span class="preco">R$ 15,00</span></li>
-            <li>Copão Busca Brisa <span class="preco">R$ 18,00</span></li>
-            <li>Copão Bob Pinga <span class="preco">R$ 18,00</span></li>
-            <li>Copão Red Label <span class="preco">R$ 20,00</span></li>
-        </ul>
+        <div class="item"><span class="nome">Copão Gin QN</span><span class="preco">R$ 15,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Copão Gin QN" data-preco="15"><button class="btn-add">+</button></div>
+        <div class="item"><span class="nome">Copão Busca Brisa</span><span class="preco">R$ 18,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Copão Busca Brisa" data-preco="18"><button class="btn-add">+</button></div>
+        <div class="item"><span class="nome">Copão Bob Pinga</span><span class="preco">R$ 18,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Copão Bob Pinga" data-preco="18"><button class="btn-add">+</button></div>
+        <div class="item"><span class="nome">Copão Red Label</span><span class="preco">R$ 20,00</span><input type="number" value="0" min="0" class="qtd" data-nome="Copão Red Label" data-preco="20"><button class="btn-add">+</button></div>
 
-        <!-- BOTÃO WHATSAPP COM SEU NÚMERO -->
-        <a class="whatsapp" href="https://wa.me/5517991927552" target="_blank">
-            Fazer Pedido no WhatsApp
-        </a>
+        <!-- CARRINHO -->
+        <div id="carrinho">
+            <h3>🛒 Seu Pedido</h3>
+            <ul id="lista-carrinho"><li>Seu carrinho está vazio</li></ul>
+            <div id="total">Total: R$ 0,00</div>
+            <a id="btn-whatsapp" class="whatsapp" href="#" target="_blank">Enviar Pedido no WhatsApp</a>
+        </div>
+
     </div>
+
+<script>
+    const carrinho = [];
+    const listaCarrinho = document.getElementById('lista-carrinho');
+    const totalEl = document.getElementById('total');
+    const btnWhats = document.getElementById('btn-whatsapp');
+
+    document.querySelectorAll('.btn-add').forEach(botao => {
+        botao.addEventListener('click', () => {
+            const item = botao.parentElement;
+            const nome = item.querySelector('.qtd').dataset.nome;
+            const preco = parseFloat(item.querySelector('.qtd').dataset.preco);
+            const qtd = parseInt(item.querySelector('.qtd').value);
+
+            if(qtd > 0){
+                const index = carrinho.findIndex(p => p.nome === nome);
+                if(index > -1) carrinho[index].qtd = qtd;
+                else carrinho.push({nome, preco, qtd});
+                atualizarCarrinho();
+            }
+        })
+    });
+
+    function atualizarCarrinho(){
+        listaCarrinho.innerHTML = '';
+        let total = 0;
+        let mensagemWhats = 'Olá! Quero fazer o pedido:%0A%0A';
+
+        if(carrinho.length === 0){
+            listaCarrinho.innerHTML = '<li>Seu carrinho está vazio</li>';
+        }
+
+        carrinho.forEach(item => {
+            if(item.qtd > 0){
+                const subtotal = item.preco * item.qtd;
+                total += subtotal;
+                listaCarrinho.innerHTML += `<li>${item.qtd}x ${item.nome} <span>R$ ${subtotal.toFixed(2)}</span></li>`;
+                mensagemWhats += `${item.qtd}x ${item.nome} - R$ ${subtotal.toFixed(2)}%0A`;
+            }
+        });
+
+        totalEl.innerText = `Total: R$ ${total.toFixed(2)}`;
+        mensagemWhats += `%0A*TOTAL: R$ ${total.toFixed(2)}*`;
+
+        btnWhats.href = `https://wa.me/5517991927552?text=${mensagemWhats}`;
+    }
+</script>
 
 </body>
 </html>
