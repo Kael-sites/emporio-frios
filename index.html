@@ -39,15 +39,24 @@
         #lista-carrinho li { display: flex; justify-content: space-between; margin: 8px 0; }
         #total { font-size: 24px; color: #fff; font-weight: bold; margin-top: 15px; }
         
-        /* OPÇÃO ENTREGA */
-        .opcoes-entrega { text-align: left; margin: 20px 0; }
+        .form-box { text-align: left; margin: 20px 0; }
+        .form-box label { display: block; margin-bottom: 5px; }
+        .form-box input, .form-box select { 
+            width: 95%; padding: 10px; margin-bottom: 15px; 
+            background: #222; color: #fff; border: 1px solid #fff; border-radius: 5px;
+        }
         .opcoes-entrega label { display: block; margin: 10px 0; cursor: pointer; }
         .opcoes-entrega input { margin-right: 10px; }
 
+        .botoes { display: flex; gap: 10px; }
        .whatsapp {
-            display: block; background-color: #25D366; color: #fff;
-            padding: 15px; margin-top: 20px; border-radius: 8px;
-            text-decoration: none; font-weight: bold; font-size: 18px;
+            flex: 2; display: block; background-color: #25D366; color: #fff;
+            padding: 15px; border-radius: 8px;
+            text-decoration: none; font-weight: bold; font-size: 16px; text-align: center;
+        }
+       .btn-limpar {
+            flex: 1; background-color: #444; color: #fff; border: none;
+            padding: 15px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer;
         }
     </style>
 </head>
@@ -76,25 +85,44 @@
             <h3>🛒 Seu Pedido</h3>
             <ul id="lista-carrinho"><li>Seu carrinho está vazio</li></ul>
             
-            <div class="opcoes-entrega">
+            <div class="form-box">
+                <label>Seu Nome:</label>
+                <input type="text" id="nome-cliente" placeholder="Digite seu nome">
+                
+                <label>Endereço:</label>
+                <input type="text" id="endereco-cliente" placeholder="Rua, Bairro, Nº - Só se for entrega">
+
+                <label>Forma de Pagamento:</label>
+                <select id="pagamento">
+                    <option value="Pix">Pix</option>
+                    <option value="Cartão">Cartão</option>
+                    <option value="Dinheiro">Dinheiro</option>
+                </select>
+
                 <h4>Forma de Entrega:</h4>
-                <label><input type="radio" name="entrega" value="retirada" checked> Retirada no Local</label>
-                <label><input type="radio" name="entrega" value="delivery"> Taxa de Entrega + R$ 5,00</label>
+                <div class="opcoes-entrega">
+                    <label><input type="radio" name="entrega" value="retirada" checked> Retirada no Local</label>
+                    <label><input type="radio" name="entrega" value="delivery"> Taxa de Entrega + R$ 5,00</label>
+                </div>
             </div>
 
             <div id="total">Total: R$ 0,00</div>
-            <a id="btn-whatsapp" class="whatsapp" href="#" target="_blank">Enviar Pedido no WhatsApp</a>
+            
+            <div class="botoes">
+                <button class="btn-limpar" onclick="limparCarrinho()">Limpar</button>
+                <a id="btn-whatsapp" class="whatsapp" href="#" target="_blank">Enviar Pedido</a>
+            </div>
         </div>
     </div>
 
 <script>
     const carrinho = [];
-    const listaCarrinho = document.getElementById('lista-carrinho');
-    const totalEl = document.getElementById('total');
-    const btnWhats = document.getElementById('btn-whatsapp');
     const taxaEntrega = 5.00;
 
     function atualizarCarrinho(){
+        const listaCarrinho = document.getElementById('lista-carrinho');
+        const totalEl = document.getElementById('total');
+        const btnWhats = document.getElementById('btn-whatsapp');
         listaCarrinho.innerHTML = '';
         let total = 0;
         let mensagemWhats = 'Olá! Quero fazer o pedido:%0A%0A';
@@ -120,26 +148,37 @@
         if(!temItem) listaCarrinho.innerHTML = '<li>Seu carrinho está vazio</li>';
 
         totalEl.innerText = `Total: R$ ${total.toFixed(2)}`;
+        
+        const nome = document.getElementById('nome-cliente').value;
+        const endereco = document.getElementById('endereco-cliente').value;
+        const pagamento = document.getElementById('pagamento').value;
+
+        mensagemWhats += `%0A*DADOS DO CLIENTE*%0A`;
+        mensagemWhats += `Nome: ${nome || 'Não informado'}%0A`;
+        if(tipoEntrega === 'delivery') mensagemWhats += `Endereço: ${endereco || 'Não informado'}%0A`;
+        mensagemWhats += `Pagamento: ${pagamento}%0A`;
+        mensagemWhats += `Entrega: ${tipoEntrega === 'delivery' ? 'Entrega' : 'Retirada no Local'}%0A`;
         mensagemWhats += `%0A*TOTAL: R$ ${total.toFixed(2)}*`;
-        mensagemWhats += `%0A%0AForma: ${tipoEntrega === 'delivery' ? 'Entrega' : 'Retirada no Local'}`;
 
         if(tipoEntrega === 'delivery'){
-            mensagemWhats += `%0A%0A*Localização:* `;
-            // Pede a localização do cliente
             navigator.geolocation.getCurrentPosition(
                 (pos) => {
-                    const lat = pos.coords.latitude;
-                    const lon = pos.coords.longitude;
-                    const linkMapa = `https://maps.google.com/?q=${lat},${lon}`;
-                    btnWhats.href = `https://wa.me/5517991927552?text=${mensagemWhats + linkMapa}`;
+                    const linkMapa = `https://maps.google.com/?q=${pos.coords.latitude},${pos.coords.longitude}`;
+                    btnWhats.href = `https://wa.me/5517991927552?text=${mensagemWhats + '%0A*Localização:* ' + linkMapa}`;
                 },
-                () => { // se negar a localização
-                    btnWhats.href = `https://wa.me/5517991927552?text=${mensagemWhats + 'Cliente não enviou localização'}`;
-                }
+                () => { btnWhats.href = `https://wa.me/5517991927552?text=${mensagemWhats}`; }
             );
         } else {
             btnWhats.href = `https://wa.me/5517991927552?text=${mensagemWhats}`;
         }
+    }
+
+    function limparCarrinho(){
+        carrinho.forEach(item => item.qtd = 0);
+        document.querySelectorAll('.qtd').forEach(input => input.value = 0);
+        document.getElementById('nome-cliente').value = '';
+        document.getElementById('endereco-cliente').value = '';
+        atualizarCarrinho();
     }
 
     document.querySelectorAll('.item').forEach(item => {
@@ -164,8 +203,8 @@
         });
     });
     
-    document.querySelectorAll('input[name="entrega"]').forEach(radio => {
-        radio.addEventListener('change', atualizarCarrinho);
+    document.querySelectorAll('input, select').forEach(el => {
+        el.addEventListener('change', atualizarCarrinho);
     });
 
     atualizarCarrinho();
